@@ -8,6 +8,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
   const [result, setResult] = useState('');
+  const [origin, setOrigin] = useState('');
+  const [destination, setDestination] = useState('');
 
   const runPythonScript = async (origin, destination) => {
     const response = await fetch('http://localhost:5000/run-python', {
@@ -29,10 +31,11 @@ function App() {
     event.preventDefault();
     const form = event.target;
     const formData = {
-      origin: form.origin.value, // Access value of the input field with name="name"
-      dest: form.destination.value, // Access value of the input field with name="email"
+      origin: form.origin.value, 
+      dest: form.destination.value, 
     };
-
+    setOrigin(form.origin.value);
+    setDestination(form.destination.value);
     runPythonScript(formData.origin, formData.dest);
   };
 
@@ -51,7 +54,7 @@ function App() {
           </form>
         </div>
         <div className="Map">
-          <GoogleMap/>
+          <GoogleMap origin={origin} destination={destination} bluelight={result}/>
         </div>
       </div>
     </div>

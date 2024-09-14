@@ -8,6 +8,7 @@ from types import GeneratorType
 from googlemaps.maps import StaticMapMarker
 from googlemaps.maps import StaticMapPath
 
+
 if __name__ == '__main__':
     args = sys.argv[1:]
 
@@ -41,9 +42,9 @@ def get_path(start, matrix):
     minimal_time_string=str(time)+' minutes'
     return minimal_time_string, minimal_time_destination
 
-curr_location = '4614 Fifth Ave, Pittsburgh, PA 15213'
+curr_location = sys.argv[1]
 
-destination = 'Gates Hillman Complex, 4902 Forbes Ave, Pittsburgh, PA 15213'
+destination = sys.argv[2]
 
 blue_poles=[(40.44532487117178, -79.94896289872858
 ),  (40.44424285573, -79.94151987367867),
@@ -69,7 +70,6 @@ blue_poles=[(40.44532487117178, -79.94896289872858
 
 
 mode='walking'
-
 units='imperial'
 
 
@@ -79,20 +79,21 @@ matrix_start = gmaps.distance_matrix(curr_location, blue_poles, mode,language='E
 
 
 time_start, dest_blue = get_path(curr_location, matrix_start)
-print(time_start)
-print(dest_blue)
+# print(time_start)
+# print(dest_blue)
 
 route_list_a = gmaps.directions(curr_location, dest_blue,
             mode)
 
 route_list_b = gmaps.directions(dest_blue, destination,
             mode)
-print(route_list_a)      
+# print(route_list_a)      
 # print(route_list_b)         
 
 
 
-f = open("route.txt", "w")
-f.write(dest_blue)
-f.close()
+# f = open("route.txt", "w")
+# f.write(dest_blue)
+# f.close()
 
+sys.stdout.write(dest_blue)
