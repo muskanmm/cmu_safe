@@ -8,6 +8,7 @@ from types import GeneratorType
 from googlemaps.maps import StaticMapMarker
 from googlemaps.maps import StaticMapPath
 
+
 if __name__ == '__main__':
     args = sys.argv[1:]
 
@@ -95,5 +96,4 @@ route_list_b = gmaps.directions(dest_blue, destination,
 # f.write(dest_blue)
 # f.close()
 
-sys.stdout.write = dest_blue
-
+sys.stdout.write(dest_blue)

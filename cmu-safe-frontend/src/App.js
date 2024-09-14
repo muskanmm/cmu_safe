@@ -5,6 +5,8 @@ import { useState } from 'react';
 
 function App() {
   const [result, setResult] = useState('');
+  const [origin, setOrigin] = useState('');
+  const [destination, setDestination] = useState('');
 
   const runPythonScript = async (origin, destination) => {
     const response = await fetch('http://localhost:5000/run-python', {
@@ -30,6 +32,8 @@ function App() {
       dest: form.destination.value, // Access value of the input field with name="email"
     };
 
+    setOrigin(formData.origin);
+    setDestination(formData.dest);
     runPythonScript(formData.origin, formData.dest);
   };
 
@@ -45,7 +49,7 @@ function App() {
           <input type="submit" value="Submit"></input>
         </form>
       </div>
-      <GoogleMap />
+      <GoogleMap origin={origin} destination={destination} bluelight={result}/>
     </div>
   );
 

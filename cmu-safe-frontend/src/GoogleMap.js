@@ -37,7 +37,7 @@ const PoiMarkers = (props) => {
   );
 };
 
-function GoogleMap() {
+function GoogleMap(origin, destination, bluelight) {
   return (
     <APIProvider apiKey={API_KEY} onLoad={() => console.log('Maps API has loaded.')}>
       <Map
@@ -49,14 +49,14 @@ function GoogleMap() {
           console.log('camera changed:', ev.detail.center, 'zoom:', ev.detail.zoom)
         }>
         <PoiMarkers pois={locations} />
-        <Directions />
+        <Directions origin={origin} destination={destination} bluelight={bluelight}/>
       </Map>
     </APIProvider>
   );
 
 }
 
-function Directions() {
+function Directions(origin, destination, bluelight) {
   const map = useMap();
   const routesLibrary = useMapsLibrary("routes");
   const mapsLibrary = useMapsLibrary("traveling");
