@@ -56,10 +56,10 @@ function App() {
           <form onSubmit={onSubmit}>
             <label>Origin: </label>
             <input type="text" id="origin" name="start" value={origin}
-              onChange={(e) => setOrigin(e.target.value)}></input><br></br>
+              onChange={(e) => setOrigin(e.target.value)} required></input><br></br>
             <label>Destination: </label>
             <input type="text" id="destination" name="destination" value={destination}
-              onChange={(e) => setDestination(e.target.value)}></input><br></br>
+              onChange={(e) => setDestination(e.target.value)} required></input><br></br>
             <input id="button" type="submit" value="Get The Safest Path Home"></input>
             <div onClick={submit}>
               {showMap && <input id="reset" type="submit" value="Reached Destination!"></input>}
