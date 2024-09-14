@@ -95,5 +95,5 @@ route_list_b = gmaps.directions(dest_blue, destination,
 # f.write(dest_blue)
 # f.close()
 
-sys.argv[2] = dest_blue
+sys.stdout.write = dest_blue
 
