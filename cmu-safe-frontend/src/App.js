@@ -3,16 +3,16 @@ import './App.css';
 import GoogleMap from './GoogleMap.js';
 import { useState } from 'react';
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 
 function App() {
   const [result, setResult] = useState('');
   const [origin, setOrigin] = useState('');
   const [destination, setDestination] = useState('');
+  const [showMap, setShowMap] = useState(false);
 
   const runPythonScript = async (origin, destination) => {
-    const response = await fetch('http://localhost:5000/run-python', {
+    const response = await fetch('http://localhost:5001/run-python', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -36,6 +36,7 @@ function App() {
     };
     setOrigin(form.origin.value);
     setDestination(form.destination.value);
+    setShowMap(true);
     runPythonScript(formData.origin, formData.dest);
   };
 
@@ -50,11 +51,11 @@ function App() {
             <input type="text" id="origin" name="start"></input><br></br>
             <label>Destination: </label>
             <input type="text" id="destination" name="destination"></input><br></br>
-            <input type="submit" value="Get The Safest Path Home"></input>
+            <input id="button" type="submit" value="Get The Safest Path Home"></input>
           </form>
         </div>
         <div className="Map">
-          <GoogleMap origin={origin} destination={destination} bluelight={result}/>
+          {showMap && <GoogleMap origin={origin} destination={destination} bluelight={result}/>}
         </div>
       </div>
     </div>
