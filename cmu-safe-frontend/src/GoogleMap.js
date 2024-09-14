@@ -21,7 +21,26 @@ const MAP_ID = globals.MAP_ID;
 function GoogleMap({ origin, destination, bluelight }) {
 
   const locations = [
-    { key: 'bluelight', location: bluelight },
+    {key: "bluelight1", location: { lat: 40.44532487117178, lng: -79.94896289872858 }},
+    {key: "bluelight2", location: { lat: 40.44424285573, lng: -79.94151987367867 }},
+    {key: "bluelight3", location: { lat: 40.44325415025914, lng: -79.94452990178975 }},
+    {key: "bluelight4", location: { lat: 40.44269057820116, lng: -79.9458826185967 }},
+    {key: "bluelight5", location: { lat: 40.44421335640257, lng: -79.94442364075167 }},
+    {key: "bluelight6", location: { lat: 40.44120735699097, lng: -79.943327007896 }},
+    {key: "bluelight7", location: { lat: 40.44094651217302, lng: -79.94380093312968 }},
+    {key: "bluelight8", location: { lat: 40.44358842139843, lng: -79.94557200251208 }},
+    {key: "bluelight9", location: { lat: 40.44380998198888, lng: -79.94613632514435 }},
+    {key: "bluelight10", location: { lat: 40.44289259942445, lng: -79.94670149578045 }},
+    {key: "bluelight11", location: { lat: 40.444690384334464, lng: -79.94478117239179 }},
+    {key: "bluelight12", location: { lat: 40.44542112922806, lng: -79.9443120728167 }},
+    {key: "bluelight13", location: { lat: 40.4462115520614, lng: -79.94431612895792 }},
+    {key: "bluelight14", location: { lat: 40.44607209907213, lng: -79.9436558076857 }},
+    {key: "bluelight15", location: { lat: 40.44501070370934, lng: -79.94378456656818 }},
+    {key: "bluelight16", location: { lat: 40.445545274072, lng: -79.94265885840805 }},
+    {key: "bluelight17", location: { lat: 40.44623823846592, lng: -79.94254724820854 }},
+    {key: "bluelight18", location: { lat: 40.44298490828685, lng: -79.93920384518604 }},
+    {key: "bluelight19", location: { lat: 40.442544847366854, lng: -79.93769745746029 }},
+    {key: "bluelight20", location: { lat: 40.44177161803253, lng: -79.93881004566654 }},
   ];
 
 
@@ -31,8 +50,9 @@ function GoogleMap({ origin, destination, bluelight }) {
         {props.pois.map((poi) => (
           <Marker
             key={poi.key}
-            position={poi.location}>
-            <Pin background={'#FBBC04'} glyphColor={'#000'} borderColor={'#000'} />
+            position={poi.location}
+          >
+            <Pin background={'#0f53ff'} glyphColor={"white"} borderColor={'#000'} />
           </Marker>
         ))}
       </>
@@ -60,7 +80,6 @@ function GoogleMap({ origin, destination, bluelight }) {
 function Directions({ origin, destination, bluelight }) {
   const map = useMap();
   const routesLibrary = useMapsLibrary("routes");
-  const mapsLibrary = useMapsLibrary("traveling");
   const [directionsService, setDirectionsService] = useState();
   const [directionsRenderer, setDirectionsRenderer] = useState();
   const [routes, setRoutes] = useState([]);
