@@ -128,3 +128,7 @@ button[type="submit"]:hover {
   margin-right: auto;
   content: center;
 }
+
+#reset {
+  margin-top: 10px; 
+}

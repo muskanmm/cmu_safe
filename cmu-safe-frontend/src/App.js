@@ -40,6 +40,13 @@ function App() {
     runPythonScript(formData.origin, formData.dest);
   };
 
+  const submit = (event) => {
+    event.preventDefault(); 
+    setShowMap(false);
+    setOrigin("")
+    setDestination("")
+  }
+
   return (
     <div className="App">
       <h1 className = "Title">CMU Safe</h1>
@@ -48,10 +55,15 @@ function App() {
         <div className="Form">
           <form onSubmit={onSubmit}>
             <label>Origin: </label>
-            <input type="text" id="origin" name="start"></input><br></br>
+            <input type="text" id="origin" name="start" value={origin}
+              onChange={(e) => setOrigin(e.target.value)}></input><br></br>
             <label>Destination: </label>
-            <input type="text" id="destination" name="destination"></input><br></br>
+            <input type="text" id="destination" name="destination" value={destination}
+              onChange={(e) => setDestination(e.target.value)}></input><br></br>
             <input id="button" type="submit" value="Get The Safest Path Home"></input>
+            <div onClick={submit}>
+              {showMap && <input id="reset" type="submit" value="Reached Destination!"></input>}
+            </div>
           </form>
         </div>
         <div className="Map">
