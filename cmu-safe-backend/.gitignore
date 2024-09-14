@@ -2,3 +2,14 @@
 
 # dependencies
 /node_modules
+
+/urllib3*
+/bin
+/certifi
+/certifi-2024.8.30.dist-info
+/charset_normalizer*
+/dotenv
+/googlemaps*
+/idna*
+/python_dotenv*
+/requests*
