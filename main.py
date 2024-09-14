@@ -6,6 +6,11 @@ import math
 from types import GeneratorType
 from googlemaps.maps import StaticMapMarker
 from googlemaps.maps import StaticMapPath
+import sys
+
+if __name__ == '__main__':
+    args = sys.argv[1:]
+    print(args)
 
 load_dotenv()
 
