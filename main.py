@@ -15,7 +15,31 @@ gmaps = googlemaps.Client(key=API_KEY)
 # reverse_geocode_result = gmaps.reverse_geocode((40.714224, -73.961452))
 # print(reverse_geocode_result)
 
+def get_path(start, matrix):
+    get_row = matrix['rows']
+
+    time_list=get_row[0]['elements']
+
+    minimal_time=None
+
+    minimal_time_string=None
+
+    minimal_time_destination=None
+
+    for location in time_list:
+        time_string=location['duration']['value']
+        if minimal_time==None or time_string<minimal_time:
+            minimal_time=time_string
+            index=time_list.index(location)
+            minimal_time_destination=matrix['destination_addresses'][index]
+
+    time=math.ceil(minimal_time//60)
+    minimal_time_string=str(time)+' minutes'
+    return minimal_time_string, minimal_time_destination
+
 curr_location = 'Stever House, 1030 Morewood Avenue, Pittsburgh, PA 15213'
+
+destination = 'Gates Hillman Complex, 4902 Forbes Ave, Pittsburgh, PA 15213'
 
 blue_poles=[(40.44532487117178, -79.94896289872858
 ),  (40.44424285573, -79.94151987367867),
@@ -45,37 +69,20 @@ mode='walking'
 units='imperial'
 
 
-matrix = gmaps.distance_matrix(curr_location, blue_poles, mode,language='English', avoid=None, units=units,
+matrix_start = gmaps.distance_matrix(curr_location, blue_poles, mode,language='English', avoid=None, units=units,
                     departure_time=None, arrival_time=None, transit_mode=None,
                     transit_routing_preference=None, traffic_model=None, region=None)
 
-print(matrix)
+print(matrix_start)
 
+time_start, dest_blue = get_path(curr_location, matrix_start)
+print(time_start)
+print(dest_blue)
 
+route_list_a = gmaps.directions(curr_location, dest_blue,
+            mode)
 
-get_row = matrix['rows']
-
-time_list=get_row[0]['elements']
-
-minimal_time=None
-
-minimal_time_string=None
-
-minimal_time_destination=None
-
-for location in time_list:
-    time_string=location['duration']['value']
-    if minimal_time==None or time_string<minimal_time:
-        minimal_time=time_string
-        index=time_list.index(location)
-        minimal_time_destination=matrix['destination_addresses'][index]
-
-time=math.ceil(minimal_time//60)
-minimal_time_string=str(time)+' minutes'
-
-print(minimal_time_string)
-print(minimal_time_destination)
-
-route_list = gmaps.directions(curr_location, minimal_time_destination,
-               mode)
-print(route_list)              
+route_list_b = gmaps.directions(dest_blue, destination,
+            mode)
+print(route_list_a)      
+print(route_list_b)               
