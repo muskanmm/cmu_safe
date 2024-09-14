@@ -99,7 +99,7 @@ print(route_list_a)
 # json = gmaps._request("/maps/api/directions/json", params_a) 
 # print(type(json))
 
-f = open("route.json", "w")
-f.write(str(route_list_a))
+f = open("route.txt", "w")
+f.write(dest_blue)
 f.close()
 
