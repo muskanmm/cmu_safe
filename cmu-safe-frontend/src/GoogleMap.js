@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { createRoot } from 'react-dom/client'; 
-// import { useGoogleMaps } from 'react-hook-google-maps';
+//import { useGoogleMaps } from 'react-hook-google-maps';
 import {
   APIProvider,
   Map,
@@ -41,7 +41,7 @@ function GoogleMap() {
   return (
     <APIProvider apiKey={API_KEY} onLoad={() => console.log('Maps API has loaded.')}>
       <Map
-        style={{ width: '100vw', height: '100vh' }}
+        style={{ width: '70vw', height: '70vh' }}
         mapIDs={MAP_ID}
         defaultZoom={13}
         defaultCenter={{ lat: 40.44745632543893, lng: -79.94727836996164 }}

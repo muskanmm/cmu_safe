@@ -2,6 +2,9 @@ import logo from './logo.svg';
 import './App.css';
 import GoogleMap from './GoogleMap.js';
 import { useState } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 
 function App() {
   const [result, setResult] = useState('');
@@ -35,19 +38,34 @@ function App() {
 
   return (
     <div className="App">
-      <h1>CMU Safe</h1>
-      <div className="Form">
-        <form onSubmit={onSubmit}>
-          <label>Origin: </label>
-          <input type="text" id="origin" name="origin"></input><br></br>
-          <label>Destination: </label>
-          <input type="text" id="destination" name="destination"></input><br></br>
-          <input type="submit" value="Submit"></input>
-        </form>
+      <h1 className = "Title">CMU Safe</h1>
+      <h2 lassName = "Subtitle">Making A Safer Campus for Everyone, Everywhere</h2>
+      <div className = "content">
+        <div className="Form">
+          <form onSubmit={onSubmit}>
+            <label>Origin: </label>
+            <input type="text" id="origin" name="start"></input><br></br>
+            <label>Destination: </label>
+            <input type="text" id="destination" name="destination"></input><br></br>
+            <input type="submit" value="Get The Safest Path Home"></input>
+          </form>
+        </div>
+        <div className="Map">
+          <GoogleMap/>
+        </div>
       </div>
-      <GoogleMap />
     </div>
   );
+  // return (
+  //   <Router>
+  //     <div>
+  //       <Routes>
+  //         <Route path="/" element={<FormPage />} />
+  //         <Route path="/success" element={<MapPage />} />
+  //       </Routes>
+  //     </div>
+  //   </Router>
+  // );
 
 }
 
