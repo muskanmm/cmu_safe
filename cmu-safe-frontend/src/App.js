@@ -28,12 +28,11 @@ function App() {
     event.preventDefault();
     const form = event.target;
     const formData = {
-      origin: form.origin.value, // Access value of the input field with name="name"
-      dest: form.destination.value, // Access value of the input field with name="email"
+      origin: form.origin.value, 
+      dest: form.destination.value, 
     };
-
-    setOrigin(formData.origin);
-    setDestination(formData.dest);
+    setOrigin(form.origin.value);
+    setDestination(form.destination.value);
     runPythonScript(formData.origin, formData.dest);
   };
 
