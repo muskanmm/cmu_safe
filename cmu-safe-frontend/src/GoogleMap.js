@@ -101,7 +101,7 @@ function Directions({ origin, destination, bluelight }) {
       destination: destination,
       waypoints: [{ location: bluelight, stopover: true },],
       optimizeWaypoints: true,
-      travelMode: window.google.maps.TravelMode.DRIVING,
+      travelMode: window.google.maps.TravelMode.WALKING,
       provideRouteAlternatives: true,
     }).then(response => {
       directionsRenderer.setDirections(response);
