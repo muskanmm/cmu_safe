@@ -1,7 +1,11 @@
 import os
 from dotenv import load_dotenv
 import googlemaps
+from googlemaps import convert
 import math
+from types import GeneratorType
+from googlemaps.maps import StaticMapMarker
+from googlemaps.maps import StaticMapPath
 
 load_dotenv()
 
@@ -37,7 +41,7 @@ def get_path(start, matrix):
     minimal_time_string=str(time)+' minutes'
     return minimal_time_string, minimal_time_destination
 
-curr_location = 'Stever House, 1030 Morewood Avenue, Pittsburgh, PA 15213'
+curr_location = '4614 Fifth Ave, Pittsburgh, PA 15213'
 
 destination = 'Gates Hillman Complex, 4902 Forbes Ave, Pittsburgh, PA 15213'
 
@@ -73,7 +77,7 @@ matrix_start = gmaps.distance_matrix(curr_location, blue_poles, mode,language='E
                     departure_time=None, arrival_time=None, transit_mode=None,
                     transit_routing_preference=None, traffic_model=None, region=None)
 
-print(matrix_start)
+# print(matrix_start)
 
 time_start, dest_blue = get_path(curr_location, matrix_start)
 print(time_start)
@@ -85,4 +89,17 @@ route_list_a = gmaps.directions(curr_location, dest_blue,
 route_list_b = gmaps.directions(dest_blue, destination,
             mode)
 print(route_list_a)      
-print(route_list_b)               
+# print(route_list_b)         
+
+# params_a = {
+#         "origin": convert.latlng(curr_location),
+#         "destination": convert.latlng(dest_blue)
+#     }
+
+# json = gmaps._request("/maps/api/directions/json", params_a) 
+# print(type(json))
+
+f = open("route.json", "w")
+f.write(str(route_list_a))
+f.close()
+
